@@ -86,9 +86,9 @@ class MongoIPCMessageService(IPC.IPCMessageService):
             worker.join()
         
     def send(self, channel_id, to, msg):
-        self._create_channel(self._producer_connection, channel_id)
-        collection = self._producer_connection[self._db][channel_id]
-        collection.insert(put_in_envelope(self.get_id(), to, msg))
+        #self._create_channel(self._producer_connection, channel_id)
+        #collection = self._producer_connection[self._db][channel_id]
+        #collection.insert(put_in_envelope(self.get_id(), to, msg))
 		
         r = redis.Redis()
         r.publish(channel_id, msg)
